@@ -39,15 +39,28 @@ public class Location implements Comparable<Location> {
         return 1;
     }
 
-    protected void update(List<Order> orderList) {
-        orderList.stream().forEach(order -> {
-            if (order instanceof TurnOrder) {
-                updateOrient((TurnOrder) order);
-            }
-            if (order instanceof MoveOrder) {
-                updateCoordinate((MoveOrder) order);
-            }
-        });
+    protected void update(InfoAndOrder infoAndOrder) throws MarsRoverException{
+        infoAndOrder.getOrderList().stream()
+            .forEach(order -> {
+                if (order instanceof TurnOrder) {
+                    updateOrient((TurnOrder) order);
+                }
+                if (order instanceof MoveOrder) {
+                    updateCoordinate((MoveOrder) order);
+                    checkBoundaryAndUpdateCoordinateIfNeed(infoAndOrder.getRegion());
+                }
+            });
+    }
+
+    private void checkBoundaryAndUpdateCoordinateIfNeed(Region region) {
+        if (x > region.getWidth()) {
+            x = region.getWidth();
+            throw new MarsRoverException(String.format("Meet boundary, current coordinate is (%s, %s), and orient is %s", x, y, orient));
+        }
+        if (y > region.getHeight()) {
+            y = region.getWidth();
+            throw new MarsRoverException(String.format("Meet boundary, current coordinate is (%s, %s), and orient is %s", x, y, orient));
+        }
     }
 
     private void updateOrient(TurnOrder order) {

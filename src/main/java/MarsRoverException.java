@@ -1,8 +1,14 @@
 public class MarsRoverException extends RuntimeException {
-    public MarsRoverException(ErrorCode errorCode) {
+    private String message;
+
+    public MarsRoverException(String message) {
+
+        this.message = message;
     }
 
-    protected enum ErrorCode {
-        INVALID_ORDER, MEET_BOUNDARY
+    @Override
+    public String getMessage() {
+        return message;
     }
+
 }

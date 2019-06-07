@@ -6,9 +6,8 @@ public class Rover {
     }
 
     public void executeOrder() {
-        Region region = infoAndOrder.getRegion();
         Location location = infoAndOrder.getLocation();
-        location.update(infoAndOrder.getOrderList());
+        location.update(infoAndOrder);
     }
 
     public Location report() {
