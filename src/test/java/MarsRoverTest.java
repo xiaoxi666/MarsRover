@@ -6,9 +6,31 @@ import org.junit.rules.ExpectedException;
 public class MarsRoverTest {
 
     @Test
+    public void should_could_create_region() {
+        Region region = getRegion();
+        Assert.assertEquals(10, region.getHeight());
+        Assert.assertEquals(10, region.getWidth());
+    }
+
+    @Test
+    public void should_could_create_initLocation() {
+        Location initLocation = getLocation();
+        Assert.assertEquals(0, initLocation.getX());
+        Assert.assertEquals(0, initLocation.getY());
+    }
+
+    private Location getLocation() {
+        return new Location(0, 0, "E");
+    }
+
+    private Region getRegion() {
+        return new Region(10, 10);
+    }
+
+    @Test
     public void should_could_action_and_report_itself_0() {
-        Region region = new Region(10, 10);
-        Location initLocation = new Location(0, 0, "E");
+        Region region = getRegion();
+        Location initLocation = getLocation();
         InfoAndOrder infoAndOrder =
             new InfoAndOrder(region, initLocation)
             .addOrder(new MoveOrder("f", 1))
@@ -24,8 +46,8 @@ public class MarsRoverTest {
 
     @Test
     public void should_could_action_and_report_itself_1() {
-        Region region = new Region(10, 10);
-        Location initLocation = new Location(0, 0, "E");
+        Region region = getRegion();
+        Location initLocation = getLocation();
         InfoAndOrder infoAndOrder =
             new InfoAndOrder(region, initLocation)
                 .addOrder(new TurnOrder("l"))
@@ -41,8 +63,8 @@ public class MarsRoverTest {
 
     @Test
     public void should_could_action_and_report_itself_2() {
-        Region region = new Region(10, 10);
-        Location initLocation = new Location(0, 0, "E");
+        Region region = getRegion();
+        Location initLocation = getLocation();
         InfoAndOrder infoAndOrder =
             new InfoAndOrder(region, initLocation)
                 .addOrder(new MoveOrder("f", 3))
@@ -67,8 +89,8 @@ public class MarsRoverTest {
         thrown.expect(MarsRoverException.class);
         thrown.expectMessage("Meet boundary, current coordinate is (10, 3), and orient is W");
 
-        Region region = new Region(10, 10);
-        Location initLocation = new Location(0, 0, "E");
+        Region region = getRegion();
+        Location initLocation = getLocation();
         InfoAndOrder infoAndOrder =
             new InfoAndOrder(region, initLocation)
                 .addOrder(new MoveOrder("f", 3))
@@ -91,8 +113,8 @@ public class MarsRoverTest {
         thrown.expect(MarsRoverException.class);
         thrown.expectMessage("Invalid move order: k");
 
-        Region region = new Region(10, 10);
-        Location initLocation = new Location(0, 0, "E");
+        Region region = getRegion();
+        Location initLocation = getLocation();
         InfoAndOrder infoAndOrder =
             new InfoAndOrder(region, initLocation)
                 .addOrder(new MoveOrder("f", 3))
@@ -112,8 +134,8 @@ public class MarsRoverTest {
         thrown.expect(MarsRoverException.class);
         thrown.expectMessage("Invalid turn order: p");
 
-        Region region = new Region(10, 10);
-        Location initLocation = new Location(0, 0, "E");
+        Region region = getRegion();
+        Location initLocation = getLocation();
         InfoAndOrder infoAndOrder =
             new InfoAndOrder(region, initLocation)
                 .addOrder(new MoveOrder("f", 3))

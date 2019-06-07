@@ -1,4 +1,5 @@
 import com.google.common.collect.ImmutableMap;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,11 @@ public class Location implements Comparable<Location> {
             .put("N", new String[]{"W", "E"})
             .build();
 
+    @Getter
     private int x;
+    @Getter
     private int y;
+    @Getter
     private String orient;
 
     public Location(int x, int y, String orient) {
