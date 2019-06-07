@@ -13,7 +13,7 @@ public class MarsRoverTest {
             .addOrder(new TurnOrder("l"));
 
         Rover rover = new Rover();
-        rover.receiveOrder(order);
+        rover.receiveInfoAndOrder(order);
         rover.executeOrder();
 
         Location curLocation = rover.report();
@@ -30,7 +30,7 @@ public class MarsRoverTest {
                 .addOrder(new MoveOrder("f", 1));
 
         Rover rover = new Rover();
-        rover.receiveOrder(order);
+        rover.receiveInfoAndOrder(order);
         rover.executeOrder();
 
         Location curLocation = rover.report();
@@ -50,7 +50,7 @@ public class MarsRoverTest {
                 .addOrder(new MoveOrder("b", 1));
 
         Rover rover = new Rover();
-        rover.receiveOrder(order);
+        rover.receiveInfoAndOrder(order);
         rover.executeOrder();
 
         Location curLocation = rover.report();

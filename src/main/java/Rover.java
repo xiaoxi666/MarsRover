@@ -1,7 +1,7 @@
 public class Rover {
     private InfoAndOrder infoAndOrder;
 
-    public void receiveOrder(InfoAndOrder infoAndOrder) {
+    public void receiveInfoAndOrder(InfoAndOrder infoAndOrder) {
         this.infoAndOrder = infoAndOrder;
     }
 
