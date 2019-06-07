@@ -45,26 +45,9 @@ public class Location implements Comparable<Location> {
                 updateOrient((TurnOrder) order);
             }
             if (order instanceof MoveOrder) {
-                updatePosition((MoveOrder) order);
+                updateCoordinate((MoveOrder) order);
             }
         });
-    }
-
-    private void updatePosition(MoveOrder order) {
-        updateX(order.forward(), order.getStep());
-        updateY(order.forward(), order.getStep());
-    }
-
-    private void updateY(boolean forward, int step) {
-        y = forward ? y + getStep(step, 1) : y - getStep(step, 1);
-    }
-
-    private void updateX(boolean forward, int step) {
-        x = forward ? x + getStep(step, 0) : x - getStep(step, 0);
-    }
-
-    private int getStep(int step, int index) {
-        return MOVE_MAP.get(orient)[index] * step;
     }
 
     private void updateOrient(TurnOrder order) {
@@ -75,5 +58,20 @@ public class Location implements Comparable<Location> {
         return TURN_MAP.get(orient)[index];
     }
 
+    private void updateCoordinate(MoveOrder order) {
+        updateX(order.forward(), order.getStep());
+        updateY(order.forward(), order.getStep());
+    }
 
+    private void updateX(boolean forward, int step) {
+        x = forward ? x + getStep(step, 0) : x - getStep(step, 0);
+    }
+
+    private void updateY(boolean forward, int step) {
+        y = forward ? y + getStep(step, 1) : y - getStep(step, 1);
+    }
+
+    private int getStep(int step, int index) {
+        return MOVE_MAP.get(orient)[index] * step;
+    }
 }
