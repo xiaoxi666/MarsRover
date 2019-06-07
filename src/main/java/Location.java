@@ -20,7 +20,6 @@ public class Location implements Comparable<Location> {
             .put("N", new String[]{"W", "E"})
             .build();
 
-
     private int x;
     private int y;
     private String orient;

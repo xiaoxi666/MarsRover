@@ -2,7 +2,6 @@ public class MarsRoverException extends RuntimeException {
     private String message;
 
     public MarsRoverException(String message) {
-
         this.message = message;
     }
 
