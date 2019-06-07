@@ -85,4 +85,46 @@ public class MarsRoverTest {
 //        Location curLocation = rover.report();
 //        Assert.assertTrue(curLocation.compareTo(new Location(10, 3, "W")) == 0);
     }
+
+    @Test
+    public void should_could_action_and_report_itself_invalid_move_order() {
+        thrown.expect(MarsRoverException.class);
+        thrown.expectMessage("Invalid move order: k");
+
+        Region region = new Region(10, 10);
+        Location initLocation = new Location(0, 0, "E");
+        InfoAndOrder infoAndOrder =
+            new InfoAndOrder(region, initLocation)
+                .addOrder(new MoveOrder("f", 3))
+                .addOrder(new TurnOrder("l"))
+                .addOrder(new MoveOrder("k", 3))
+                .addOrder(new TurnOrder("l"))
+                .addOrder(new MoveOrder("b", 1))
+                .addOrder(new MoveOrder("b", 7));
+
+        Rover rover = new Rover();
+        rover.receiveInfoAndOrder(infoAndOrder);
+        rover.executeOrder();
+    }
+
+    @Test
+    public void should_could_action_and_report_itself_invalid_turn_order() {
+        thrown.expect(MarsRoverException.class);
+        thrown.expectMessage("Invalid turn order: p");
+
+        Region region = new Region(10, 10);
+        Location initLocation = new Location(0, 0, "E");
+        InfoAndOrder infoAndOrder =
+            new InfoAndOrder(region, initLocation)
+                .addOrder(new MoveOrder("f", 3))
+                .addOrder(new TurnOrder("l"))
+                .addOrder(new MoveOrder("b", 3))
+                .addOrder(new TurnOrder("p"))
+                .addOrder(new MoveOrder("f", 1))
+                .addOrder(new MoveOrder("b", 7));
+
+        Rover rover = new Rover();
+        rover.receiveInfoAndOrder(infoAndOrder);
+        rover.executeOrder();
+    }
 }

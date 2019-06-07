@@ -19,7 +19,7 @@ public class MoveOrder implements Order{
 
     private void checkParams() {
         if (!FORWARD.equals(move) && !BACKWARD.equals(move)) {
-            throw new MarsRoverException(String.format("Invalid order: %s", move));
+            throw new MarsRoverException(String.format("Invalid move order: %s", move));
         }
     }
 }

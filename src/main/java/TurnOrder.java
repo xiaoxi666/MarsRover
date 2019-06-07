@@ -8,12 +8,13 @@ public class TurnOrder implements Order{
     }
 
     public boolean left() {
+        checkParams();
         return LEFT.equals(turn);
     }
 
     private void checkParams() {
         if (!LEFT.equals(turn) && !RIGHT.equals(turn)) {
-            throw new MarsRoverException(String.format("Invalid order", turn));
+            throw new MarsRoverException(String.format("Invalid turn order: %s", turn));
         }
     }
 
